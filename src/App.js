@@ -3,6 +3,7 @@ import Moment from "moment";
 import "moment-timezone";
 import tz from "zipcode-to-timezone";
 import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const APP_KEY = "appid=0e715fd6e4dd427ee64eeda6aab95586";
 
@@ -61,26 +62,30 @@ class App extends React.Component {
     return (
       <React.Fragment>
         <div className="container">
-          <div className="card">
-            <h1>What's My Weather?</h1>
+          <div className="row">
+            <div className="card">
+              <h1>What's My Weather?</h1>
+
+              <div>
+                <input type="text" id="zipcode" ref="clear" />
+                <button onClick={this.weather}>Get Weather</button>
+              </div>
+              <div>
+                <h3>The Time is {this.state.currentTime}</h3>
+                <span>City: {this.state.city}</span>
+                <br />
+                <span>Forecast: {this.state.forecast}</span>
+                <br />
+                <span>Temperature: {Math.round(this.state.temp)} </span>
+                <br />
+                <span>
+                  What it actually feels like:{" "}
+                  {Math.round(this.state.feelsLike)}
+                </span>
+                <br />
+              </div>
+            </div>
           </div>
-        </div>
-        <div>
-          <input type="text" id="zipcode" ref="clear" />
-          <button onClick={this.weather}>Get Weather</button>
-        </div>
-        <div>
-          <h3>The Time is {this.state.currentTime}</h3>
-          <span>City: {this.state.city}</span>
-          <br />
-          <span>Forecast: {this.state.forecast}</span>
-          <br />
-          <span>Temperature: {Math.round(this.state.temp)} </span>
-          <br />
-          <span>
-            What it actually feels like: {Math.round(this.state.feelsLike)}
-          </span>
-          <br />
         </div>
       </React.Fragment>
     );
