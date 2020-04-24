@@ -71,7 +71,11 @@ class App extends React.Component {
 
           <div className="row headerRow">
             <input type="text" id="zipcode" ref="clear" />
-            <button onClick={this.weather}>Get Weather</button>
+            <button onClick={this.weather}>Get Weather by Zipcode</button>
+          </div>
+          <div className="row headerRow">
+            <input type="text" id="city" ref="clear" />
+            <button onClick={this.cityWeather}>Get Weather by City</button>
           </div>
           <div className="row headerRow">
             <h3>{this.state.currentTime}</h3>
