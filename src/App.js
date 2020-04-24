@@ -3,7 +3,6 @@ import Moment from "moment";
 import "moment-timezone";
 import tz from "zipcode-to-timezone";
 import "./App.css";
-import "bootstrap/dist/css/bootstrap.min.css";
 
 const APP_KEY = "appid=0e715fd6e4dd427ee64eeda6aab95586";
 
@@ -46,6 +45,10 @@ class App extends React.Component {
             forecast: data.weather[0].main,
             temp: data.main.temp,
             feelsLike: data.main.feels_like,
+            iconUrl:
+              "http://openweathermap.org/img/w/" +
+              data.weather[0].icon +
+              ".png",
           });
 
           this.refs.clear.value = "";
@@ -61,18 +64,27 @@ class App extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <div className="container">
+        <div className="container header">
+          <div className="row headerRow">
+            <h1>What's My Weather?</h1>
+          </div>
+
+          <div className="row headerRow">
+            <input type="text" id="zipcode" ref="clear" />
+            <button onClick={this.weather}>Get Weather</button>
+          </div>
+          <div className="row headerRow">
+            <h3>{this.state.currentTime}</h3>
+          </div>
+        </div>
+
+        <div className="container weather">
           <div className="row">
             <div className="card">
-              <h1>What's My Weather?</h1>
-
               <div>
-                <input type="text" id="zipcode" ref="clear" />
-                <button onClick={this.weather}>Get Weather</button>
-              </div>
-              <div>
-                <h3>The Time is {this.state.currentTime}</h3>
                 <span>City: {this.state.city}</span>
+                <br />
+                <img src={this.state.iconUrl} />
                 <br />
                 <span>Forecast: {this.state.forecast}</span>
                 <br />
